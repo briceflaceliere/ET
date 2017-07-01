@@ -1,0 +1,27 @@
+version: '2'
+
+services:
+  locations:
+    image: node:8
+    expose:
+      - "80"
+    networks:
+      - et_private_interservice
+    working_dir: /usr/src/app
+    volumes:
+      - ./../et-locations/:/usr/src/app
+    entrypoint:
+      - npm
+      - run
+      - dev
+  et_locations_postgress:
+    image: mdillon/postgis
+    environment:
+      - POSTGRES_PASSWORD=postgres
+    networks:
+      - et_private_interservice
+
+networks:
+  et_public:
+  et_private_interservice:
+  et_private_locations:
