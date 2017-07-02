@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+CAUTION: Do not modify this file unless you know what you are doing.
+         Unexpected results may occur if the code is changed deliberately.
+-->
+<dbmodel pgmodeler-ver="0.8.1" last-position="0,0" last-zoom="1"
+	 default-schema="public" default-owner="postgres">
+<database name="postgres">
+</database>
+
+<schema name="public" protected="true" fill-color="#e1e1e1" sql-disabled="true">
+</schema>
+
+<sequence name="et_ads_id_sequence"
+	 start="1" increment="1"
+	 min-value="0" max-value="2147483647"
+	 cache="1" cycle="false">
+	<schema name="public"/>
+	<role name="postgres"/>
+</sequence>
+
+<table name="et_ads">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="506" y="352"/>
+	<column name="et_id" not-null="true" sequence="public.et_ads_id_sequence">
+		<type name="integer"/>
+	</column>
+	<column name="et_title" not-null="true">
+		<type name="varchar" length="250"/>
+	</column>
+	<column name="et_city_id" not-null="true">
+		<type name="smallint"/>
+	</column>
+	<column name="et_location" not-null="true">
+		<type name="point"/>
+	</column>
+	<constraint name="et_ads_primary_key" type="pk-constr" table="public.et_ads">
+		<columns names="et_id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<sequence name="et_cities_id_sequence"
+	 start="1" increment="1"
+	 min-value="0" max-value="2147483647"
+	 cache="1" cycle="false">
+	<schema name="public"/>
+	<role name="postgres"/>
+</sequence>
+
+<table name="et_cities">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="1007" y="340"/>
+	<column name="et_id" not-null="true" sequence="public.et_cities_id_sequence">
+		<type name="smallint"/>
+	</column>
+	<column name="et_name" not-null="true">
+		<type name="varchar" length="100"/>
+	</column>
+	<column name="et_location" not-null="true">
+		<type name="point"/>
+	</column>
+	<column name="et_zipcode" not-null="true">
+		<type name="varchar" length="5"/>
+	</column>
+	<column name="et_insee_code" not-null="true">
+		<type name="smallint"/>
+	</column>
+	<constraint name="et_cities_primary_key" type="pk-constr" table="public.et_cities">
+		<columns names="et_id" ref-type="src-columns"/>
+	</constraint>
+	<constraint name="et_cities_insee_code" type="uq-constr" table="public.et_cities">
+		<columns names="et_insee_code" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<constraint name="et_ads_city_relation" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.et_cities" table="public.et_ads">
+	<columns names="et_city_id" ref-type="src-columns"/>
+	<columns names="et_id" ref-type="dst-columns"/>
+</constraint>
+
+<relationship name="rel_et_ads_et_cities" type="relfk"
+	 src-table="public.et_ads"
+	 dst-table="public.et_cities"
+	 src-required="false" dst-required="false"/>
+
+</dbmodel>
