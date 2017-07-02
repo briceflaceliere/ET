@@ -1,6 +1,17 @@
 version: '2'
 
 services:
+#  osrm:
+#    image: osrm/osrm-backend
+#    ports:
+#      - "5000:5000"
+#    networks:
+#      - et_private_interservice
+#    volumes:
+#      - ./../et-data/:/data
+#    entrypoint:
+#      - osrm-routed
+#      - /data/france-latest.osrm
   locations:
     image: node:8
     expose:
