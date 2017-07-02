@@ -1,0 +1,72 @@
+version: '2'
+
+services:
+#  osrm:
+#    image: osrm/osrm-backend
+#    ports:
+#      - "5000:5000"
+#    networks:
+#      - et_private_interservice
+#    volumes:
+#      - ./../data/:/data
+#    entrypoint:
+#      - osrm-routed
+#      - /data/france-latest.osrm
+#  locations:
+#    image: node:8
+#    expose:
+#      - "80"
+#    networks:
+#      - et_private_interservice
+#    working_dir: /usr/src/app
+#    volumes:
+#      - ./../locations/:/usr/src/app
+#    entrypoint:
+#      - npm
+#      - run
+#      - dev
+#  et_locations_postgress:
+#    image: mdillon/postgis
+#    environment:
+#      - POSTGRES_PASSWORD=postgres
+#    networks:
+#      - et_private_interservice
+  ads_searcher:
+    image: node:8
+    expose:
+      - "80"
+    networks:
+      - et_private_ads_searcher
+      - et_public
+    working_dir: /usr/src/app
+    volumes:
+      - ./../ads-searcher/:/usr/src/app
+    entrypoint:
+      - npm
+      - run
+      - dev
+  et_postgress:
+    image: mdillon/postgis
+    environment:
+      - POSTGRES_PASSWORD=postgres
+    volumes:
+      - et_postgress_data:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    networks:
+      - et_private_ads_searcher
+  et_postgress_adminer:
+    image: adminer
+    networks:
+      - et_private_ads_searcher
+    ports:
+      - 8080:8080
+
+volumes:
+  et_postgress_data:
+
+networks:
+  et_public:
+  et_private_interservice:
+  et_private_locations:
+  et_private_ads_searcher:
