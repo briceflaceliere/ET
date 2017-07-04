@@ -1,4 +1,4 @@
-var webpack = require('webpack');
+var webpack = require("webpack");
 var path = require('path');
 
 var BUILD_DIR = path.resolve(__dirname, 'public/');
@@ -10,6 +10,9 @@ var config = {
         path: BUILD_DIR,
         filename: 'bundle.js'
     },
+    plugins: [
+        new webpack.HotModuleReplacementPlugin() // Enable HMR
+    ],
     module: {
         loaders: [
             {
@@ -22,6 +25,14 @@ var config = {
             }
         ]
     },
+    devServer: {
+        hot: true, // Tell the dev-server we're using HMR
+        contentBase: BUILD_DIR,
+        publicPath: '/',
+        public: 'localhost:8083',
+        host: '0.0.0.0',
+        port: 80
+    }
 };
 
 module.exports = config;
