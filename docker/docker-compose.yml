@@ -40,10 +40,7 @@ services:
     working_dir: /usr/src/app
     volumes:
       - ./../frontend/:/usr/src/app
-    entrypoint:
-      - npm
-      - run
-      - dev
+    command: npm run dev
   ads_searcher:
     build: ./images/node-ads-searcher/
     ports:
@@ -54,10 +51,7 @@ services:
     working_dir: /usr/src/app
     volumes:
       - ./../ads-searcher/:/usr/src/app
-    entrypoint:
-      - npm
-      - run
-      - dev
+    command: npm run dev
   et_postgress:
     image: mdillon/postgis
     environment:
