@@ -4,24 +4,35 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "dev": "npm install && APP_MODE=dev node server.js",
-    "start": "echo \"Error: no start specified\" && exit 1",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "npm install && export UNIVERSAL=true && npm run build && node src/server-es5.js",
+    "start:dev": "npm install && export UNIVERSAL=true && export NODE_ENV=development && npm run build:dev && nodemon --exec babel-node -- src/server.jsx",
+    "build": "NODE_ENV=production webpack -p",
+    "build:dev": "webpack -d",
+    "build:dev:watch": "webpack -d --watch"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.15.3",
+    "babel-cli": "^6.24.1",
+    "babel-core": "^6.25.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "ejs": "^2.5.2",
+    "express": "5.0.0-alpha.5",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-router-dom": "^4.1.1"
   },
   "devDependencies": {
-    "babel-core": "^6.25.0",
-    "babel-loader": "^7.1.1",
-    "babel-preset-es2015": "^6.24.1",
-    "babel-preset-react": "^6.24.1",
-    "webpack": "^3.0.0",
-    "webpack-dev-middleware": "^1.11.0"
+    "babel-loader": "^7.1.0",
+    "babel-register": "^6.24.1",
+    "eslint": "^3.18.0",
+    "eslint-config-airbnb": "^14.1.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^4.0.0",
+    "eslint-plugin-react": "^6.10.3",
+    "nodemon": "^1.11.0",
+    "webpack": "3.0.0",
+    "webpack-node-externals": "^1.6.0"
   }
 }
