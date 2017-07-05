@@ -2,9 +2,9 @@
   "name": "et-frontend",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "dev": "npm install && node server.js",
+    "dev": "npm install && APP_MODE=dev node server.js",
     "start": "echo \"Error: no start specified\" && exit 1",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
