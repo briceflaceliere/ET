@@ -5,7 +5,8 @@
   "main": "server.js",
   "scripts": {
     "start": "npm install && export UNIVERSAL=true && npm run build && node src/server-es5.js",
-    "start:dev": "npm install && export UNIVERSAL=true && export NODE_ENV=development && npm run build:dev && nodemon --exec babel-node -- src/server.jsx",
+    "start:dev": "export NODE_ENV=development && npm install && npm run build:dev && nodemon --exec babel-node -- src/server.jsx",
+    "start:dev:universal": "export UNIVERSAL=true && npm run start:dev",
     "build": "NODE_ENV=production webpack -p",
     "build:dev": "webpack -d",
     "build:dev:watch": "webpack -d --watch"
@@ -21,7 +22,9 @@
     "express": "5.0.0-alpha.5",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
-    "react-router-dom": "^4.1.1"
+    "react-redux": "^5.0.5",
+    "react-router-dom": "^4.1.1",
+    "redux": "^3.7.1"
   },
   "devDependencies": {
     "babel-loader": "^7.1.0",

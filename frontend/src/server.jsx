@@ -4,9 +4,12 @@ import path from 'path';
 import { Server } from 'http';
 import Express from 'express';
 import React from 'react';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
 import { renderToString } from 'react-dom/server';
 import { StaticRouter as Router } from 'react-router-dom';
-import { App } from './components/app.jsx';
+import App from './components/App.jsx';
+import rootReducer from './reducers';
 
 const app = new Express();
 const server = new Server(app);
@@ -25,10 +28,14 @@ app.get('*', (req, res) => {
 
   if (process.env.UNIVERSAL) {
     const context = {};
+    const store = createStore(rootReducer);
+
     markup = renderToString(
-      <Router location={req.url} context={context}>
-        <App />
-      </Router>,
+      <Provider store={store}>
+        <Router location={req.url} context={context}>
+          <App />
+        </Router>
+      </Provider>
     );
 
     // context.url will contain the URL to redirect to if a <Redirect> was used
