@@ -7,7 +7,9 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import { renderToString } from 'react-dom/server';
+import { browserHistory } from 'react-router';
 import { StaticRouter as Router } from 'react-router-dom';
+
 import App from './components/App.jsx';
 import rootReducer from './reducers';
 
