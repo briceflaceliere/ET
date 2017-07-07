@@ -1,14 +1,15 @@
 import path from 'path';
 import nodeExternals from 'webpack-node-externals';
+import webpack from 'webpack';
 
 const client = {
-    entry: {
-        js: './src/app-client.jsx',
-    },
+    entry: './src/app-client.jsx',
     output: {
         path: path.join(__dirname, 'src', 'static', 'js'),
         filename: 'bundle.js',
     },
+    plugins: [
+    ],
     module: {
         rules: [
             {

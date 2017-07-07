@@ -3,6 +3,7 @@ import { Route, Link, Switch, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Home from '../routes/Home.jsx';
 import About from '../routes/About.jsx';
+import Header from '../components/Header.jsx';
 
 class App extends React.Component {
     constructor(props){
@@ -16,11 +17,7 @@ class App extends React.Component {
     render() {
         return (
             <div>
-                <Link to="/">Home</Link> /
-                <Link to="/about">About</Link>
-                <button onClick={() => this.addTest()}>Add</button>
-                Test : {this.props.test}
-                <hr />
+                <Header />
                 <Switch>
                     <Route exact path="/" component={Home} />
                     <Route path="/about" component={About} />
