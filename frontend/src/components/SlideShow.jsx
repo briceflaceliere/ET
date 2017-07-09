@@ -15,6 +15,7 @@ class SlideShow extends React.Component {
 
         const containerStyle = {
             height: this.props.height + 'px',
+            position: 'relative',
         };
 
         return (

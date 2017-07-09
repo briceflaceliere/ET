@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import Home from '../routes/Home.jsx';
 import About from '../routes/About.jsx';
 import Header from '../components/Header.jsx';
+import Footer from '../components/Footer.jsx';
 
 class App extends React.Component {
     constructor(props){
@@ -22,6 +23,7 @@ class App extends React.Component {
                     <Route exact path="/" component={Home} />
                     <Route path="/about" component={About} />
                 </Switch>
+                <Footer />
             </div>
         );
     }
